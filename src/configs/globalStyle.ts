@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         font-family: 'Quicksand', sans-serif;
         line-height: 1rem;
+        overflow-x: hidden;
     }
     @media screen and (min-width: 760px){
         *::-webkit-scrollbar {

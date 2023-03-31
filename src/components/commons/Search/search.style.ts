@@ -27,6 +27,7 @@ const InputFormStyle = styled.input`
   border: none;
   outline: 0;
   color: inherit;
+  width: 100%;
 `;
 
 const IconContainerStyle = styled.i`

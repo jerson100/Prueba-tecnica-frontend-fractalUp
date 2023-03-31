@@ -2,12 +2,19 @@ import styled from "styled-components";
 
 const VideoDetailContainerStyle = styled.article`
   display: flex;
+  flex-direction: column;
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
+    flex-direction: row;
+  }
 `;
 
 const VideoDetailImageContainerStyle = styled.div`
-  flex: 0 0 250px;
+  flex: 0 1 150px;
   position: relative;
   cursor: pointer;
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
+    flex: 0 1 250px;
+  }
   &:hover i {
     color: ${({ theme }) => theme.palette.common.lightRed};
   }
@@ -25,12 +32,16 @@ const VideoDetailImageContainerStyle = styled.div`
 
 const VideoDetailContentStyle = styled.div<
   {
-    wallpaper: string;
+    wallpaper: string | undefined;
   } & React.HTMLAttributes<HTMLDivElement>
 >`
-  padding: 32px;
+  flex: 1;
+  padding: 1rem;
   /*padding: 40px 32px;*/
   position: relative;
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
+    padding: 32px;
+  }
   &::before {
     content: "";
     position: absolute;
@@ -45,6 +56,7 @@ const VideoDetailContentStyle = styled.div<
       ),
       url(${({ wallpaper }) => wallpaper});
     mix-blend-mode: normal;
+    background-repeat: no-repeat;
     opacity: 0.5;
     transform: matrix(-1, 0, 0, 1, 0, 0);
     z-index: -1;

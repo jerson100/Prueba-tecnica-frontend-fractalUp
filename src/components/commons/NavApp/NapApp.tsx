@@ -3,9 +3,9 @@ import logo from "../../../assets/images/logo.svg";
 import NavigatorList, { NavigatorListItem } from "../NavigatorList";
 import itemsList from "../../../configs/navigationList";
 
-const NapApp = () => {
+const NapApp = ({ active = false }: { active: boolean }) => {
   return (
-    <NavAppContainer>
+    <NavAppContainer active={active}>
       <NavLogoStyle src={logo} alt="logo de foxbel music" />
       <NavigatorList>
         {itemsList.MI_LIBRERIA.map((item, index) =>

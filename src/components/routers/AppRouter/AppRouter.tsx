@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "../../../pages/HomePage";
+import AlbumsPage from "../../../pages/AlbumsPage";
+import SearchPage from "../../../pages/SearchPage";
+import NotFound from "../../commons/NotFound";
 import MainLayout from "../../layouts/MainLayout";
 
 const AppRouter = () => {
@@ -7,7 +9,10 @@ const AppRouter = () => {
     <Router>
       <Routes>
         <Route path="/" element={<MainLayout />}>
-          <Route index path="/" element={<HomePage />} />
+          {/* <Route index path="/" element={<SearchPage />} /> */}
+          <Route path="/canciones" element={<SearchPage />} />
+          <Route path="/albums" element={<AlbumsPage />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </Router>

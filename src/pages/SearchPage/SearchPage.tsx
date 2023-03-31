@@ -2,19 +2,18 @@ import ListVideo from "../../components/commons/ListVideo";
 import VideoDetail from "../../components/commons/VideoDetail";
 import usePlayerMusicContext from "../../hooks/usePlayerMusicContext";
 import useSearchContext from "../../hooks/useSearchContext";
-import { VideoModel } from "../../styled";
 import { HomeVideDetailStyle, TitleHomePage } from "./homePage.style";
 
-const artist = {
-  id: "1",
-  artistname: "Luis Fonsi",
-  followers: 1000000,
-  img: "https://i.ytimg.com/vi/8Qn_spdM5Zg/maxresdefault.jpg",
-  description:
-    "Luis Fonsi es un cantante, compositor y productor puertorriqueño de música pop y urbana. Es conocido por ser el autor de la canción Despacito, la canción más escuchada en la historia de Spotify y la canción más reproducida en YouTube con más de 7 mil millones de reproducciones.",
-  songname: "Despacito",
-  wallpaper: "https://i.ytimg.com/vi/8Qn_spdM5Zg/maxresdefault.jpg",
-};
+// const artist = {
+//   id: "1",
+//   artistname: "Luis Fonsi",
+//   followers: 1000000,
+//   img: "https://i.ytimg.com/vi/8Qn_spdM5Zg/maxresdefault.jpg",
+//   description:
+//     "Luis Fonsi es un cantante, compositor y productor puertorriqueño de música pop y urbana. Es conocido por ser el autor de la canción Despacito, la canción más escuchada en la historia de Spotify y la canción más reproducida en YouTube con más de 7 mil millones de reproducciones.",
+//   songname: "Despacito",
+//   wallpaper: "https://i.ytimg.com/vi/8Qn_spdM5Zg/maxresdefault.jpg",
+// };
 
 // const videos: VideoModel[] = [
 //   {
@@ -80,22 +79,28 @@ const artist = {
 //   },
 // ];
 
-const HomePage = () => {
+const SearchPage = () => {
   const { loading, tracks, error } = useSearchContext();
   const { changeListeningSong } = usePlayerMusicContext();
   return (
     <>
-      <HomeVideDetailStyle>
-        <VideoDetail {...artist} />
-      </HomeVideDetailStyle>
-      <TitleHomePage>Resultados</TitleHomePage>
-      <ListVideo
-        videos={tracks}
-        loading={loading}
-        changeListeningSong={changeListeningSong}
-      />
+      {!loading && tracks?.length === 0 ? (
+        <p>No se encontraron resultados</p>
+      ) : (
+        <>
+          <HomeVideDetailStyle>
+            <VideoDetail track={tracks[0]} loading={loading} />
+          </HomeVideDetailStyle>
+          <TitleHomePage>Resultados</TitleHomePage>
+          <ListVideo
+            videos={tracks?.slice(1)}
+            loading={loading}
+            changeListeningSong={changeListeningSong}
+          />
+        </>
+      )}
     </>
   );
 };
 
-export default HomePage;
+export default SearchPage;

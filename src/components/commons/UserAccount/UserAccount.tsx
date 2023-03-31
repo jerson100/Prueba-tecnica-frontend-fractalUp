@@ -1,3 +1,4 @@
+import useMediaQuery from "../../../hooks/useMediaQuery";
 import {
   UserAccountContainerStyle,
   UserIconStyle,
@@ -5,10 +6,11 @@ import {
 } from "./userAccount.style";
 
 const UserAccount = () => {
+  const isTablet = useMediaQuery("md", "min-width");
   return (
     <UserAccountContainerStyle>
       <UserIconStyle className="fa-solid fa-user" />
-      <UserNameStyle>Francisco M.</UserNameStyle>
+      {isTablet ? <UserNameStyle>Francisco M.</UserNameStyle> : null}
     </UserAccountContainerStyle>
   );
 };

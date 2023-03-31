@@ -1,4 +1,5 @@
 import "styled-components";
+import { breakpoints } from "./configs/sizes";
 
 export type ButtonVariant = "contained" | "outlined";
 
@@ -62,6 +63,8 @@ export interface Album {
   type: string;
 }
 
+export type BreakPoints = keyof typeof breakpoints;
+
 declare module "styled-components" {
   export interface DefaultTheme {
     borderRadius: string;
@@ -83,5 +86,6 @@ declare module "styled-components" {
       };
       mode: string;
     };
+    breakpoints: { [key: string]: number };
   }
 }

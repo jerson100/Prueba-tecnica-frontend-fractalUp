@@ -5,15 +5,34 @@ import { ContentStyle, MainLayoutContainerStyle } from "./mainLayout.style";
 import MusicPlayer from "../../commons/MusicPlayer";
 import { SearchProvider } from "../../../contexts/SearchContext";
 import { PlayerMusicProvider } from "../../../contexts/PlayerMusicContext";
+import { useCallback, useEffect, useState } from "react";
+import { MainLayoutVariants } from "./maintLayoutVariants";
+import useMediaQuery from "../../../hooks/useMediaQuery";
 
 const MainLayout = () => {
+  const [activeNavBar, setActiveNavBar] = useState(false);
+  const isTablet = useMediaQuery("md", "min-width");
+  const handleActiveNavBar = useCallback(() => {
+    setActiveNavBar((prev) => !prev);
+  }, []);
+  useEffect(() => {
+    //overflow hidden when active navbar in html element
+    if (activeNavBar) {
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "auto";
+    }
+  }, [activeNavBar]);
   return (
     <>
-      <NavApp />
+      <NavApp active={activeNavBar || isTablet} />
       <PlayerMusicProvider>
-        <ContentStyle>
+        <ContentStyle
+          animate={activeNavBar && !isTablet ? "active" : "inactive"}
+          variants={MainLayoutVariants}
+        >
           <SearchProvider>
-            <Header />
+            <Header handleActiveNavBar={handleActiveNavBar} />
             <MainLayoutContainerStyle>
               <Outlet />
             </MainLayoutContainerStyle>

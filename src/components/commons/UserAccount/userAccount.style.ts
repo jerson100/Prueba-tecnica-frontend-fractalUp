@@ -10,6 +10,7 @@ const UserAccountContainerStyle = styled.div`
 const UserNameStyle = styled.p`
   margin: 0;
   color: ${({ theme }) => theme.palette.common.gray2};
+  white-space: nowrap;
 `;
 
 const UserIconStyle = styled.i`

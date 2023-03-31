@@ -2,8 +2,8 @@ import { createContext, useCallback, useMemo, useState } from "react";
 import { Track } from "../styled";
 
 interface PlayerMusicContextProps {
-  listeningSong: Track | null;
-  changeListeningSong: (track: Track) => void;
+  listeningSong: Partial<Track> | null;
+  changeListeningSong: (track: Partial<Track> | null) => void;
 }
 
 const PlayerMusicContext = createContext<PlayerMusicContextProps | null>(null);
@@ -13,9 +13,11 @@ interface PlayerMusicProviderProps {
 }
 
 const PlayerMusicProvider = ({ children }: PlayerMusicProviderProps) => {
-  const [listeningSong, setListeningSong] = useState<Track | null>(null);
+  const [listeningSong, setListeningSong] = useState<Partial<Track> | null>(
+    null
+  );
 
-  const changeListeningSong = useCallback((track: Track) => {
+  const changeListeningSong = useCallback((track: Partial<Track> | null) => {
     setListeningSong(track);
   }, []);
 
@@ -25,6 +27,7 @@ const PlayerMusicProvider = ({ children }: PlayerMusicProviderProps) => {
       changeListeningSong,
     };
   }, [listeningSong, changeListeningSong]);
+
   return (
     <PlayerMusicContext.Provider value={valuesMemo}>
       {children}

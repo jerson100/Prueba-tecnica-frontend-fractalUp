@@ -18,7 +18,7 @@ interface SearchProviderProps {
 }
 
 const SearchProvider = ({ children }: SearchProviderProps) => {
-  const [track, setTrack] = useState("");
+  const [track, setTrack] = useState("adele");
   const trackDebounce = useDebounce(track, 500);
   const { tracks, loading, error } = useTracks({ track: trackDebounce });
   const changeTrack = useCallback((track: string) => {

@@ -6,16 +6,25 @@ export const MusicPlayerContainerStyle = styled.div<{ active: boolean }>`
   justify-content: space-between;
   flex-wrap: nowrap;
   background-color: ${({ theme }) => theme.palette.common.lightRed};
-  height: 100px;
+  height: 60px;
   position: fixed;
   transition: bottom 0.3s ease-in-out;
   bottom: ${({ active }) => (active ? "0" : "-100px")};
   width: 100%;
-  z-index: 10000;
+  z-index: 1;
+  gap: 10px;
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
+    height: 100px;
+    z-index: 10000;
+    gap: 20px;
+  }
   i {
-    font-size: 20px;
+    font-size: 10px;
     color: ${({ theme }) => theme.palette.common.white};
     cursor: pointer;
+    @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
+      font-size: 20px;
+    }
   }
   /* align-items: center; */
 `;
@@ -23,19 +32,32 @@ export const MusicPlayerContainerStyle = styled.div<{ active: boolean }>`
 export const MusicPlayerleftStyle = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
+  overflow: hidden;
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
+    gap: 20px;
+  }
 `;
 export const MusicPlayerCentertStyle = styled.div`
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 10px;
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
+    gap: 25px;
+  }
 `;
 export const MusicPlayerRightStyle = styled.div`
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 10px;
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
+    gap: 40px;
+  }
   i {
-    margin-right: 40px;
+    margin-right: 1rem;
+    @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
+      margin-right: 40px;
+    }
   }
 `;
 
@@ -66,10 +88,18 @@ export const MusicPlayerVolumePountStyle = styled.div<VolumeActionProps>`
 `;
 
 export const MusicPlayerImageContainerStyle = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 100%;
   position: relative;
-  flex: 0 0 100px;
+  flex: 0 0 60px;
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.sm}px`}) {
+    flex-basis: 80px;
+    width: 80px;
+  }
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
+    flex-basis: 100px;
+    width: 100px;
+  }
 `;
 
 export const MusicPlayerImageStyle = styled.img`
@@ -85,25 +115,40 @@ export const MusicPlayerSongContainerStyle = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 150px;
+  flex: 1 1 60px;
+  overflow: hidden;
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
+    flex-basis: 150px;
+    width: 150px;
+  }
 `;
 
 export const MusicPlayerSongStyle = styled.p`
   margin: 0 0 8px 0;
   font-size: 14px;
   font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   color: ${({ theme }) => theme.palette.common.white};
 `;
 export const MusicPlayerAuthorStyle = styled.p`
   margin: 0 0 0 0;
   font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   color: ${({ theme }) => theme.palette.common.white};
 `;
 export const MusicPlayerStartActionStyle = styled.p`
   cursor: pointer;
   border-radius: 100%;
-  width: 60px;
-  height: 60px;
+  width: 20px;
+  height: 20px;
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
+    width: 60px;
+    height: 60px;
+  }
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,12 +161,15 @@ export const MusicPlayerRangeStyle = styled.div`
 `;
 
 export const MusicPlayerRangeInputStyle = styled.input`
-  width: 100px;
+  width: 60px;
   height: 6px;
   background-color: ${({ theme }) => theme.palette.common.white};
   border-radius: 50px;
   -webkit-appearance: none;
   cursor: pointer;
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
+    width: 100px;
+  }
   &::-webkit-slider-thumb {
     background-color: ${({ theme }) => theme.palette.common.white};
     width: 20px;
