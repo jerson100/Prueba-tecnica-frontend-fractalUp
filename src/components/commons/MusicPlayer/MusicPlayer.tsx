@@ -1,0 +1,54 @@
+import { useCallback, useEffect, useRef, useState } from "react";
+import usePlayerMusicContext from "../../../hooks/usePlayerMusicContext";
+import ButtonNavigation from "./components/ButtonNavigation";
+import InfoMusic from "./components/InfoMusic";
+import VolumeControl from "./components/VolumeControl";
+import { MusicPlayerContainerStyle } from "./musicPlayer.style";
+
+const MusicPlayer = () => {
+  const { listeningSong } = usePlayerMusicContext();
+  const [playing, setPlaying] = useState(true);
+  const [volume, setVolume] = useState(50);
+  const audioRef = useRef<HTMLAudioElement>(new Audio());
+
+  const changePlaying = useCallback(() => {
+    setPlaying((prevPlaying) => {
+      if (prevPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      return !prevPlaying;
+    });
+  }, []);
+
+  const changeVolume = useCallback((volume: number) => {
+    setVolume(volume);
+    audioRef.current.volume = volume / 100;
+  }, []);
+
+  useEffect(() => {
+    let cb: (() => void) | null = null;
+    if (listeningSong?.preview) {
+      cb = () => setPlaying(false);
+      audioRef.current.src = listeningSong?.preview;
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+      setPlaying(true);
+      audioRef.current.addEventListener("ended", cb);
+    }
+    return () => {
+      if (cb) audioRef.current.removeEventListener("ended", cb);
+    };
+  }, [listeningSong]);
+
+  return (
+    <MusicPlayerContainerStyle active={listeningSong != null}>
+      <InfoMusic track={listeningSong} />
+      <ButtonNavigation changePlaying={changePlaying} playing={playing} />
+      <VolumeControl changeVolume={changeVolume} volume={volume} />
+    </MusicPlayerContainerStyle>
+  );
+};
+
+export default MusicPlayer;
