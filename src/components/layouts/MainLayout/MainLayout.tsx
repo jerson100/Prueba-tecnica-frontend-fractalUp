@@ -25,7 +25,11 @@ const MainLayout = () => {
   }, [activeNavBar]);
   return (
     <>
-      <NavApp active={activeNavBar || isTablet} />
+      <NavApp
+        active={activeNavBar || isTablet}
+        isTablet={isTablet}
+        handleActiveNavBar={handleActiveNavBar}
+      />
       <PlayerMusicProvider>
         <ContentStyle
           animate={activeNavBar && !isTablet ? "active" : "inactive"}
