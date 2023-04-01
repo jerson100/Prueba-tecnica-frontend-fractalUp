@@ -6,7 +6,7 @@ import { ListStyle } from "./listVideo.style";
 interface ListVideoProps {
   videos: Track[];
   loading?: boolean;
-  changeListeningSong: (track: Track) => void;
+  changeListeningSong: (track: Partial<Track>) => void;
 }
 
 const ListVideo = ({
