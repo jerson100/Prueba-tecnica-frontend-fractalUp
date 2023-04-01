@@ -37,23 +37,23 @@ const itemsList = {
     },
     {
       type: "link",
-      to: "search?category=metal",
+      to: "metal",
       children: "Metal",
     },
     {
       type: "link",
-      to: "search?category=para-bailar",
+      to: "parabailar",
       children: "Para bailar",
     },
 
     {
       type: "link",
-      to: "search?category=rock90s",
+      to: "rock90s",
       children: "Rock 90s",
     },
     {
       type: "link",
-      to: "search?category=baladas",
+      to: "baladas",
       children: "Baladas",
     },
   ],
