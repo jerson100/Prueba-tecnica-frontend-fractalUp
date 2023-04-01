@@ -5,9 +5,13 @@ Prueba ténica de fractalUp haciendo uso de la api de Deezers.
 ## Imágenes
 
 ![Versión desktop 1](./public/app/desktop.JPG)
+
 ![Versión desktop 2](./public/app/desktop02.JPG)
+
 ![Versión mobile 1](./public/app/mobile01.JPG)
+
 ![Versión mobile 2](./public/app/mobile02.JPG)
+
 ![Versión mobile 3](./public/app/mobile03.JPG)
 
 ## Autor
