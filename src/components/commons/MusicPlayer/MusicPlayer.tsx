@@ -11,6 +11,21 @@ const MusicPlayer = () => {
   const [volume, setVolume] = useState(50);
   const audioRef = useRef<HTMLAudioElement>(new Audio());
 
+  useEffect(() => {
+    let cb: (() => void) | null = null;
+    if (listeningSong?.preview) {
+      cb = () => setPlaying(false);
+      audioRef.current.src = listeningSong?.preview;
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+      setPlaying(true);
+      audioRef.current.addEventListener("ended", cb);
+    }
+    return () => {
+      if (cb) audioRef.current.removeEventListener("ended", cb);
+    };
+  }, [listeningSong]);
+
   const changePlaying = useCallback(() => {
     setPlaying((prevPlaying) => {
       if (prevPlaying) {
@@ -26,21 +41,6 @@ const MusicPlayer = () => {
     setVolume(volume);
     audioRef.current.volume = volume / 100;
   }, []);
-
-  useEffect(() => {
-    let cb: (() => void) | null = null;
-    if (listeningSong?.preview) {
-      cb = () => setPlaying(false);
-      audioRef.current.src = listeningSong?.preview;
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
-      setPlaying(true);
-      audioRef.current.addEventListener("ended", cb);
-    }
-    return () => {
-      if (cb) audioRef.current.removeEventListener("ended", cb);
-    };
-  }, [listeningSong]);
 
   return (
     <MusicPlayerContainerStyle active={listeningSong != null}>

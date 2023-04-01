@@ -10,7 +10,7 @@ const UserAccount = () => {
   return (
     <UserAccountContainerStyle>
       <UserIconStyle className="fa-solid fa-user" />
-      {isTablet ? <UserNameStyle>Francisco M.</UserNameStyle> : null}
+      {isTablet ? <UserNameStyle>Jerson R.</UserNameStyle> : null}
     </UserAccountContainerStyle>
   );
 };

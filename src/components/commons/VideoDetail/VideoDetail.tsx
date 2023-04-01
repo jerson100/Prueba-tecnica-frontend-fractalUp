@@ -32,14 +32,14 @@ const VideoDetail = React.memo(
         <VideoDetailImageContainerStyle onClick={handleClick}>
           <i className="fa-solid fa-play"></i>
           <VideoDetailImageStyle
-            src={track.album?.cover_medium}
-            alt={track.album?.title}
+            src={track?.album?.cover_medium}
+            alt={track?.album?.title}
           />
         </VideoDetailImageContainerStyle>
-        <VideoDetailContentStyle wallpaper={track.album?.cover_medium}>
-          <VideoTitleStyle>{track.artist?.name}</VideoTitleStyle>
+        <VideoDetailContentStyle wallpaper={track?.album?.cover_medium}>
+          <VideoTitleStyle>{track?.artist?.name}</VideoTitleStyle>
           <VideoSubHeaderStyle>
-            <VideoSongNameStyle>{track.title}</VideoSongNameStyle>
+            <VideoSongNameStyle>{track?.title}</VideoSongNameStyle>
             <VideoFollowersStyle>1000 seguidores</VideoFollowersStyle>
           </VideoSubHeaderStyle>
           <VideoTextContentStyle>

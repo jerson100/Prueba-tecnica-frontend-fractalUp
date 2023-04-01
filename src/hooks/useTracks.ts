@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getTracks } from "../services/track";
 import { Track } from "../styled";
 
-const useTracks = ({ track }: { track: string }) => {
+const useTracks = (track: string) => {
   const [tracks, setTracks] = useState<Track[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -18,7 +18,6 @@ const useTracks = ({ track }: { track: string }) => {
           setLoading(false);
         })
         .catch((err) => {
-          console.log(err);
           setError(true);
           setLoading(false);
         });
