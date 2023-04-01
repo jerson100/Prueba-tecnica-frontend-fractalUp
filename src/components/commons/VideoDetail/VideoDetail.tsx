@@ -63,26 +63,26 @@ const Loading = () => {
   return (
     <VideoDetailContainerStyle>
       <VideoDetailImageContainerStyle>
-        <Skeleton variant="rect" width={"100%"} height={"100%"} />
+        <Skeleton width={"100%"} height={"100%"} />
       </VideoDetailImageContainerStyle>
       <VideoDetailContentStyle wallpaper={""}>
         <VideoTitleStyle>
-          <Skeleton variant="text" count={1} width={"100%"} />
+          <Skeleton count={1} width={"100%"} />
         </VideoTitleStyle>
         <VideoSubHeaderStyle>
           <VideoSongNameStyle>
-            <Skeleton variant="text" count={1} width={"100px"} />
+            <Skeleton count={1} width={"100px"} />
           </VideoSongNameStyle>
           <VideoFollowersStyle>
-            <Skeleton variant="text" count={1} width={"50px"} />
+            <Skeleton count={1} width={"50px"} />
           </VideoFollowersStyle>
         </VideoSubHeaderStyle>
         <VideoTextContentStyle>
-          <Skeleton variant="text" count={1} width={"100%"} />
+          <Skeleton count={1} width={"100%"} />
         </VideoTextContentStyle>
         <VideoDetailButtonsStyle>
-          <Skeleton variant="text" count={2} width={"100px"} />
-          <Skeleton variant="text" count={2} width={"100px"} />
+          <Skeleton count={2} width={"100px"} />
+          <Skeleton count={2} width={"100px"} />
         </VideoDetailButtonsStyle>
       </VideoDetailContentStyle>
     </VideoDetailContainerStyle>

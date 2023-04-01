@@ -69,6 +69,7 @@ const VideoTitleStyle = styled.h1`
   font-weight: 700;
   font-size: 22px;
   cursor: pointer;
+  display: inline-block;
   &:hover {
     color: ${({ theme }) => theme.palette.common.lightRed};
   }

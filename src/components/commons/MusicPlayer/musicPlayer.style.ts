@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { VolumeActionProps } from "../../../styled";
+import Color from "color";
 
 export const MusicPlayerContainerStyle = styled.div<{ active: boolean }>`
   display: flex;
@@ -152,7 +153,8 @@ export const MusicPlayerStartActionStyle = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 0, 0, 0.1);
+  background-color: ${({ theme }) =>
+    Color(theme.palette.common.lightRed).lighten(0.1).hex()};
 `;
 
 export const MusicPlayerRangeStyle = styled.div`

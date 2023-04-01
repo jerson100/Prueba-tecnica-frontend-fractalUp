@@ -5,7 +5,7 @@ export type ButtonVariant = "contained" | "outlined";
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
-  variant?: ButtonVariant;
+  variant: ButtonVariant;
 }
 
 export interface VolumeActionProps {
