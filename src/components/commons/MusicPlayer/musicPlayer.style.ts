@@ -56,8 +56,10 @@ export const MusicPlayerRightStyle = styled.div`
   }
   i {
     margin-right: 1rem;
+    width: 10px;
     @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
       margin-right: 40px;
+      width: 18px;
     }
   }
 `;
