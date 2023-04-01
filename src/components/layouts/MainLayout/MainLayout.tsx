@@ -23,6 +23,13 @@ const MainLayout = () => {
       document.documentElement.style.overflow = "auto";
     }
   }, [activeNavBar]);
+
+  useEffect(() => {
+    if (isTablet) {
+      document.documentElement.style.overflow = "auto";
+    }
+  }, [isTablet]);
+
   return (
     <>
       <NavApp

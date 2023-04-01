@@ -11,7 +11,7 @@ export const getTracks = async ({
 }): Promise<Track[]> => {
   const tracks = await fetch(
     `
-    https://corsanywhere.herokuapp.com/${api}?q=${track}&limit=7`,
+    https://corsanywhere.herokuapp.com/${api}?q=${track}&limit=11`,
     {
       method: "GET",
       signal,
