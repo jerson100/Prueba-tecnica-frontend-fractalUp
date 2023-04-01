@@ -32,9 +32,9 @@ const NavListContainerStyle = styled.div`
   display: flex;
   flex-direction: column;
   overflow: auto;
-  padding: 0 1rem 1rem 1rem;
+  /* padding: 0 1rem 1rem 1rem; */
   @media (min-width: ${(props) => `${props.theme.breakpoints.md}px`}) {
-    padding: 0 40px 40px 40px;
+    /* padding: 0 40px 40px 40px; */
   }
 `;
 

@@ -11,19 +11,14 @@ const NavigatorItem = ({ children, type, to }: NavigatorItemProps) => {
     type === "title" ? (
       <p className="title">{children}</p>
     ) : (
-      <NavLink to={to} style={getColor}>
+      <NavLink
+        to={to}
+        className={({ isActive }) => (isActive ? "active" : "inactive")}
+      >
         {children}
       </NavLink>
     );
   return <NavigatorListItemStyle>{content}</NavigatorListItemStyle>;
-};
-
-interface getColorProps {
-  isActive: boolean;
-}
-
-const getColor = ({ isActive }: getColorProps) => {
-  return isActive ? { color: "#E86060" } : null;
 };
 
 export default NavigatorItem;
