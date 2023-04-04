@@ -6,11 +6,15 @@ import {
 
 interface ButtonNavigationProps {
   changePlaying: () => void;
+  nextSong: () => void;
+  prevSong: () => void;
   playing: boolean;
 }
 
 const ButtonNavigation = ({
   changePlaying = () => {},
+  nextSong = () => {},
+  prevSong = () => {},
   playing = false,
 }: ButtonNavigationProps) => {
   const iconPlaying = (
@@ -18,11 +22,11 @@ const ButtonNavigation = ({
   );
   return (
     <MusicPlayerCentertStyle>
-      <i className="fa-solid fa-step-backward"></i>
+      <i className="fa-solid fa-step-backward" onClick={prevSong}></i>
       <MusicPlayerStartActionStyle onClick={changePlaying}>
         {iconPlaying}
       </MusicPlayerStartActionStyle>
-      <i className="fa-solid fa-step-forward"></i>
+      <i className="fa-solid fa-step-forward" onClick={nextSong}></i>
     </MusicPlayerCentertStyle>
   );
 };

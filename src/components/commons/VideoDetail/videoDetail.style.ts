@@ -1,8 +1,23 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const VideoDetailContainerStyle = styled.article`
+const VideoDetailContainerStyle = styled.article<{ isSelected: boolean }>`
   display: flex;
   flex-direction: column;
+  ${({ isSelected }) =>
+    isSelected &&
+    css`
+      position: relative;
+      &::before {
+        left: 0;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        z-index: 2;
+        backdrop-filter: sepia(1);
+      }
+    `}
   @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
     flex-direction: row;
   }

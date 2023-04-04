@@ -6,7 +6,7 @@ import VolumeControl from "./components/VolumeControl";
 import { MusicPlayerContainerStyle } from "./musicPlayer.style";
 
 const MusicPlayer = () => {
-  const { listeningSong } = usePlayerMusicContext();
+  const { listeningSong, nextSong, prevSong } = usePlayerMusicContext();
   const [playing, setPlaying] = useState(true);
   const [volume, setVolume] = useState(50);
   const audioRef = useRef<HTMLAudioElement>(new Audio());
@@ -14,12 +14,19 @@ const MusicPlayer = () => {
   useEffect(() => {
     let cb: (() => void) | null = null;
     if (listeningSong?.preview) {
-      cb = () => setPlaying(false);
+      cb = () => {
+        setPlaying(false);
+        nextSong();
+      };
       audioRef.current.src = listeningSong?.preview;
       audioRef.current.currentTime = 0;
       audioRef.current.play();
       setPlaying(true);
       audioRef.current.addEventListener("ended", cb);
+    } else {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      setPlaying(false);
     }
     return () => {
       if (cb) audioRef.current.removeEventListener("ended", cb);
@@ -45,7 +52,12 @@ const MusicPlayer = () => {
   return (
     <MusicPlayerContainerStyle active={listeningSong != null}>
       <InfoMusic track={listeningSong} />
-      <ButtonNavigation changePlaying={changePlaying} playing={playing} />
+      <ButtonNavigation
+        changePlaying={changePlaying}
+        playing={playing}
+        nextSong={nextSong}
+        prevSong={prevSong}
+      />
       <VolumeControl changeVolume={changeVolume} volume={volume} />
     </MusicPlayerContainerStyle>
   );

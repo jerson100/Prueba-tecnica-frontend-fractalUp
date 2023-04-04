@@ -14,17 +14,21 @@ import {
 import "react-loading-skeleton/dist/skeleton.css";
 
 type VideoPropsLoading =
-  | ((Track & { loading: false }) | ({ loading?: true } & Partial<Track>)) & {
-      onClick?: (track: Partial<Track>) => void;
+  | (
+      | (Track & { loading: false; selected?: false })
+      | ({ loading?: true; selected?: boolean } & Partial<Track>)
+    ) & {
+      selectSong?: (index: number) => void;
     };
 
 const Video = ({
-  onClick = () => {},
+  selectSong = () => {},
   loading = false,
+  selected = false,
   ...track
 }: VideoPropsLoading) => {
   return (
-    <VideoListContainerStyle>
+    <VideoListContainerStyle isSelected={selected}>
       {loading ? (
         <>
           <VideoImageLoadingStyle />
@@ -35,7 +39,7 @@ const Video = ({
         <VideoArticleStyle>
           <VideoImageContainerStyle
             onClick={() => {
-              !loading ? onClick(track) : null;
+              !loading ? selectSong(track.id as number) : null;
             }}
           >
             <i className="fa-solid fa-play"></i>

@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Skeleton from "react-loading-skeleton";
+import Color from "color";
 
-export const VideoListContainerStyle = styled.li`
+export const VideoListContainerStyle = styled.li<{ isSelected: boolean }>`
   & .txt2 {
     display: inline-block;
     width: 70px;
@@ -11,6 +12,21 @@ export const VideoListContainerStyle = styled.li`
     display: inline-block;
     width: 100px;
   }
+  ${({ isSelected }) =>
+    isSelected &&
+    css`
+      position: relative;
+      &::before {
+        left: 0;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        z-index: 2;
+        backdrop-filter: sepia(1);
+      }
+    `}
 `;
 
 export const VideoArticleStyle = styled.article``;

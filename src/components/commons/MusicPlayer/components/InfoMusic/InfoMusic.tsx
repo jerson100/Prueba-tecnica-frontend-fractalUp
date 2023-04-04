@@ -9,7 +9,7 @@ import {
   MusicPlayerSongStyle,
 } from "../../musicPlayer.style";
 
-const InfoMusic = ({ track }: { track: Partial<Track> | null }) => {
+const InfoMusic = ({ track }: { track: Partial<Track> | null | undefined }) => {
   return (
     <MusicPlayerleftStyle>
       <MusicPlayerImageContainerStyle>

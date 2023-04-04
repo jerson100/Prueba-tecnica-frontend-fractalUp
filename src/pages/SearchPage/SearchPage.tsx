@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import ListVideo from "../../components/commons/ListVideo";
 import VideoDetail from "../../components/commons/VideoDetail";
 import { useDebounce } from "../../hooks/useDebounce";
@@ -10,18 +11,32 @@ const SearchPage = () => {
   const { track } = useSearchContext();
   const trackDebounce = useDebounce(track, 500);
   const { tracks, loading, error } = useTracks(trackDebounce);
-  const { changeListeningSong } = usePlayerMusicContext();
+  const { selectSong, updateSongs, listeningSong } = usePlayerMusicContext();
+
+  const handleSelectSong = useCallback(
+    (index: number) => {
+      selectSong(index);
+      updateSongs(tracks);
+    },
+    [tracks]
+  );
   if (error) return <p>Ocurrió un error, vuelva a intentarlo nuevamente</p>;
   return (
     <>
       <HomeVideDetailStyle>
-        <VideoDetail track={tracks[0]} loading={loading} />
+        <VideoDetail
+          track={tracks[0]}
+          loading={loading}
+          selectSong={handleSelectSong}
+          selected={!!listeningSong && listeningSong.id === tracks[0]?.id}
+        />
       </HomeVideDetailStyle>
       <TitleHomePage>Resultados</TitleHomePage>
       <ListVideo
         videos={tracks?.slice(1)}
         loading={loading}
-        changeListeningSong={changeListeningSong}
+        selectSong={handleSelectSong}
+        selected={listeningSong?.id}
       />
     </>
   );

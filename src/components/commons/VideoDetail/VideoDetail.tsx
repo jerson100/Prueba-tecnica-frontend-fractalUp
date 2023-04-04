@@ -14,54 +14,61 @@ import {
   VideoTextContentStyle,
   VideoTitleStyle,
 } from "./videoDetail.style";
-import usePlayerMusicContext from "../../../hooks/usePlayerMusicContext";
 
-type VideoDetailPropsLoading =
-  | ({ track: Track } & { loading: false })
-  | ({ loading?: true } & { track: Partial<Track> });
+type VideoDetailPropsLoading = (
+  | { track: Track; loading: false }
+  | { loading: true; track: Partial<Track> }
+) & {
+  selectSong: (index: number) => void;
+  selected: boolean;
+};
 
-const VideoDetail = React.memo(
-  ({ track, loading = false }: VideoDetailPropsLoading) => {
-    const { changeListeningSong } = usePlayerMusicContext();
-    if (loading) return <Loading />;
-    const handleClick = () => {
-      changeListeningSong(track);
-    };
-    return (
-      <VideoDetailContainerStyle>
-        <VideoDetailImageContainerStyle onClick={handleClick}>
-          <i className="fa-solid fa-play"></i>
-          <VideoDetailImageStyle
-            src={track?.album?.cover_medium}
-            alt={track?.album?.title}
-          />
-        </VideoDetailImageContainerStyle>
-        <VideoDetailContentStyle wallpaper={track?.album?.cover_medium}>
-          <VideoTitleStyle>{track?.artist?.name}</VideoTitleStyle>
-          <VideoSubHeaderStyle>
-            <VideoSongNameStyle>{track?.title}</VideoSongNameStyle>
-            <VideoFollowersStyle>1000 seguidores</VideoFollowersStyle>
-          </VideoSubHeaderStyle>
-          <VideoTextContentStyle>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda,
-            adipisci iste cum hic voluptates ipsa labore quo laboriosam impedit.
-            Cumque modi facere nulla id veniam rem autem quae esse ipsam.
-          </VideoTextContentStyle>
-          <VideoDetailButtonsStyle>
-            <Button variant="contained" onClick={handleClick}>
-              Reproducir
-            </Button>
-            <Button variant="outlined">Seguir</Button>
-          </VideoDetailButtonsStyle>
-        </VideoDetailContentStyle>
-      </VideoDetailContainerStyle>
-    );
-  }
-);
+const VideoDetail = ({
+  track,
+  loading = false,
+  selectSong,
+  selected = false,
+}: VideoDetailPropsLoading) => {
+  if (loading) return <Loading />;
+  return (
+    <VideoDetailContainerStyle isSelected={selected}>
+      <VideoDetailImageContainerStyle
+        onClick={() => selectSong(track.id as number)}
+      >
+        <i className="fa-solid fa-play"></i>
+        <VideoDetailImageStyle
+          src={track?.album?.cover_medium}
+          alt={track?.album?.title}
+        />
+      </VideoDetailImageContainerStyle>
+      <VideoDetailContentStyle wallpaper={track?.album?.cover_medium}>
+        <VideoTitleStyle>{track?.artist?.name}</VideoTitleStyle>
+        <VideoSubHeaderStyle>
+          <VideoSongNameStyle>{track?.title}</VideoSongNameStyle>
+          <VideoFollowersStyle>1000 seguidores</VideoFollowersStyle>
+        </VideoSubHeaderStyle>
+        <VideoTextContentStyle>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda,
+          adipisci iste cum hic voluptates ipsa labore quo laboriosam impedit.
+          Cumque modi facere nulla id veniam rem autem quae esse ipsam.
+        </VideoTextContentStyle>
+        <VideoDetailButtonsStyle>
+          <Button
+            variant="contained"
+            onClick={() => selectSong(track.id as number)}
+          >
+            Reproducir
+          </Button>
+          <Button variant="outlined">Seguir</Button>
+        </VideoDetailButtonsStyle>
+      </VideoDetailContentStyle>
+    </VideoDetailContainerStyle>
+  );
+};
 
 const Loading = () => {
   return (
-    <VideoDetailContainerStyle>
+    <VideoDetailContainerStyle isSelected={false}>
       <VideoDetailImageContainerStyle>
         <Skeleton width={"100%"} height={"100%"} />
       </VideoDetailImageContainerStyle>
@@ -89,4 +96,4 @@ const Loading = () => {
   );
 };
 
-export default VideoDetail;
+export default React.memo(VideoDetail);

@@ -19,6 +19,10 @@ const NavAppContainer = styled(motion.div)`
 `;
 
 const NavLogoStyle = styled.img`
+  height: 40px;
+  @media (min-width: ${(props) => `${props.theme.breakpoints.md}px`}) {
+    height: 60px;
+  }
   width: 100%;
 `;
 const LogotContainerStyle = styled.div`
