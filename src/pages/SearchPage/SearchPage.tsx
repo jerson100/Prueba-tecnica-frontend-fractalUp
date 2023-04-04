@@ -11,6 +11,7 @@ const SearchPage = () => {
   const trackDebounce = useDebounce(track, 500);
   const { tracks, loading, error } = useTracks(trackDebounce);
   const { changeListeningSong } = usePlayerMusicContext();
+  if (error) return <p>Ocurrió un error, vuelva a intentarlo nuevamente</p>;
   return (
     <>
       <HomeVideDetailStyle>

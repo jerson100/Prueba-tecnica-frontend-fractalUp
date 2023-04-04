@@ -12,6 +12,8 @@ const useTracks = (track: string) => {
       abortController = new AbortController();
       const signal = abortController.signal;
       setLoading(true);
+      setError(false);
+      setTracks([]);
       getTracks({ track, signal })
         .then((tracks) => {
           setTracks(tracks);
@@ -23,10 +25,16 @@ const useTracks = (track: string) => {
         });
     }
     return () => {
-      setLoading(false);
       abortController?.abort();
     };
   }, [track]);
+
+  useEffect(() => {
+    return () => {
+      setLoading(false);
+      setError(false);
+    };
+  }, []);
   return { tracks, loading, error };
 };
 
