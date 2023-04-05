@@ -12,7 +12,7 @@ export const MusicPlayerContainerStyle = styled.div<{ active: boolean }>`
   transition: bottom 0.3s ease-in-out;
   bottom: ${({ active }) => (active ? "0" : "-100px")};
   width: 100%;
-  z-index: 1;
+  z-index: 3;
   gap: 10px;
   @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
     height: 100px;
